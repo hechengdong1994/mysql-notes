@@ -1,0 +1,60 @@
+MySQL数据库管理系统的概述：1.2.1 What is MySQL?1.2.2 The Main Features of MySQL1.2.3 History of MySQL
+MySQL标准：1.7.1 MySQL Extensions to Standard SQL1.7.2 MySQL Differences from Standard SQL1.7.3 How MySQL Deals with Constraints
+安装和升级：2 Installing and Upgrading MySQL
+使用教程：3 Tutorial
+命令行程序：4 MySQL Programs
+服务器管理：
+	服务器配置、数据目录，特别是mysql系统模式、服务器日志文件、一台机器上多个服务器的管理5 MySQL Server Administration
+	安全：影响安全的一般因素、安装本身的安全、数据库系统本身的访问控制和安全性、与安全有关的插件所提供的功能、MySQL和你的系统的网络安全、备份6 Security
+	备份和恢复：备份的类型、创建备份的方法、恢复方法、备份调度、压缩和加密、表维护7 Backup and Recovery
+性能优化：不同层面上：配置、调整和测量性能。
+	索引优化：索引结构，sql处理过程
+	解析器和优化器
+事务？在innodb中讨论。
+语言结构：编写sql语句元素的规则9 Language Structure
+字符集与排序规则：10 Character Sets, Collations, Unicode
+数据类型：11 Data Types
+函数与操作符：12 Functions and Operators
+SQL语句：13 SQL Statements
+8.0新增14 MySQL Data Dictionary
+innodb：acid，多版本，架构，内存结构，磁盘结构，锁和事务，配置，表与页压缩，行格式，磁盘I/O和文件空间管理，在线DDL，静态数据加密，启动选项和系统变量，INFORMATION_SCHEMA表，与MySQL性能模式的集成，监控器，备份和恢复，InnoDB和MySQL的复制，memcached插件，故障排除，限制和局限性15 The InnoDB Storage Engine
+其他存储引擎16 Alternative Storage Engines
+复制：配置，安全，实现，解决方案17 Replication
+组复制：配置，要求和限制，监控，使用，保护，升级，系统变量，技术细节18 Group Replication
+19 MySQL Shell
+20 Using MySQL as a Document Store
+
+21 InnoDB Cluster
+22 InnoDB ReplicaSet
+
+23 MySQL NDB Cluster 8.0
+
+分区24 Partitioning
+存储对象：存储过程，存储函数，触发器，视图25 Stored Objects
+数据库元数据（数据字典和系统目录）26 INFORMATION_SCHEMA Tables
+数据库性能数据27 MySQL Performance Schema
+28 MySQL sys Schema
+29 Connectors and APIs
+
+30 MySQL Enterprise Edition
+31 MySQL Workbench
+32 MySQL on the OCI Marketplace
+
+
+安排
+sql_mode：https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html
+客户端连接管理：https://dev.mysql.com/doc/refman/5.7/en/connection-management.html ip/主机名缓存，tcp连接了解
+服务器管理：
+	服务器配置
+	数据目录 https://dev.mysql.com/doc/refman/5.7/en/data-directory.html 
+	服务器日志文件 https://dev.mysql.com/doc/refman/5.7/en/server-logs.html
+	一台机器上多个服务器的管理5 MySQL Server Administration
+	安全：影响安全的一般因素、安装本身的安全、数据库系统本身的访问控制和安全性、与安全有关的插件所提供的功能、MySQL和你的系统的网络安全、备份6 Security
+	备份和恢复：备份的类型、创建备份的方法、恢复方法、备份调度、压缩和加密、表维护7 Backup and Recovery
+字符集与排序规则：10 Character Sets, Collations, Unicode
+数据类型：11 Data Types
+函数与操作符：12 Functions and Operators
+性能优化：不同层面上：配置、调整和测量性能。
+	索引优化：索引结构，sql处理过程
+	解析器和优化器
+innodb
