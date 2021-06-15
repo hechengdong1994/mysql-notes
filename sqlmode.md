@@ -4,6 +4,8 @@ https://dev.mysql.com/doc/refman/5.7/en/faqs-sql-modes.html
 
 https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html#sysvar_innodb_strict_mode
 
+https://dev.mysql.com/doc/refman/5.7/en/data-type-defaults.html
+
 MySQL技术内幕 2.1P65 3.3P163
 
 深入理解MySQL核心技术 P121
