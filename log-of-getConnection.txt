@@ -1,0 +1,534 @@
+MySQL server log：
+
+2022-07-07T02:43:29.771020Z     28381 Connect   hcd@x.x.x.x on test using TCP/IP
+2022-07-07T02:43:29.854101Z     28381 Query     /* @MYSQL_CJ_FULL_PROD_NAME@ ( Revision: @MYSQL_CJ_REVISION@ ) */SHOW VARIABLES WHERE Variable_name ='language' OR Variable_name = 'net_write_timeout' OR Variable_name = 'interactive_timeout' OR Variable_name = 'wait_timeout' OR Variable_name = 'character_set_client' OR Variable_name = 'character_set_connection' OR Variable_name = 'character_set' OR Variable_name = 'character_set_server' OR Variable_name = 'tx_isolation' OR Variable_name = 'transaction_isolation' OR Variable_name = 'character_set_results' OR Variable_name = 'timezone' OR Variable_name = 'time_zone' OR Variable_name = 'system_time_zone' OR Variable_name = 'lower_case_table_names' OR Variable_name = 'max_allowed_packet' OR Variable_name = 'net_buffer_length' OR Variable_name = 'sql_mode' OR Variable_name = 'query_cache_type' OR Variable_name = 'query_cache_size' OR Variable_name = 'init_connect'
+2022-07-07T02:43:30.191397Z     28381 Query     /* @MYSQL_CJ_FULL_PROD_NAME@ ( Revision: @MYSQL_CJ_REVISION@ ) */SELECT @@session.auto_increment_increment
+2022-07-07T02:43:30.219823Z     28381 Query     SET NAMES utf8mb4
+2022-07-07T02:43:30.223370Z     28381 Query     SET character_set_results = NULL
+2022-07-07T02:43:30.227089Z     28381 Query     SET autocommit=1
+2022-07-07T02:43:30.233065Z     28381 Query     SET sql_mode='NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'
+2022-07-07T02:43:30.351146Z     28381 Query     SHOW WARNINGS
+2022-07-07T02:43:30.383582Z     28381 Quit
+
+
+78, 0, 0, 0, 
+
+10, 
+53, 46, 55, 46, 51, 52, 45, 108, 111, 103, 0, 
+-116, 3, 0, 
+0, 
+22, 25, 58, 39, 97, 48, 126, 10, seed第一段
+0, 
+-1, -1, serverCapabilities
+45, serverCharsetIndex
+2, 0, serverStatus
+-1, -63, serverCapabilities
+21, authPluginDataLength
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 预留
+42, 1, 95, 77, 49, 24, 102, 7, 43, 104, 80, 127, 0, seed第二段
+109, 121, 115, 113, 108, 95, 110, 97, 116, 105, 118, 101, 95, 112, 97, 115, 115, 119, 111, 114, 100, 0, 0 auth-plugin-name
+
+application log：
+
+DriverManager.getConnection("jdbc:mysql://x.x.x.x:3301/test?traceProtocol=true&enablePacketDebug=true")
+    trying com.mysql.jdbc.Driver
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(4), buffer_size=16384, current_position=0, need to read 4 bytes to fill request, underlying InputStream reports 82 total bytes available, attempting to read 82 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading packet of length 78
+Packet header:
+4e 00 00 00                 N . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4b1210ee,0,78)
+Thu Jul 07 10:44:39 CST 2022 TRACE: readPacket() payload:
+0a 35 2e 37 2e 33 34 2d     . 5 . 7 . 3 4 - 
+6c 6f 67 00 dd 6e 00 00     l o g . . n . . 
+59 34 0d 22 23 7b 08 50     Y 4 . " # { . P 
+00 ff ff 2d 02 00 ff c1     . . . - . . . . 
+15 00 00 00 00 00 00 00     . . . . . . . . 
+00 00 00 6b 21 0c 2a 5b     . . . k ! . * [ 
+4f 58 50 2f 5a 3e 1a 00     O X P / Z > . . 
+6d 79 73 71 6c 5f 6e 61     m y s q l _ n a 
+74 69 76 65 5f 70 61 73     t i v e _ p a s 
+73 77 6f 72 64 00           s w o r d . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: send() packet payload:
+host: '172.24.133.95' threadId: '28381'
+34 01 00 01 8f a2 3a 00     4 . . . . . : . 
+ff ff ff 00 21 00 00 00     . . . . ! . . . 
+00 00 00 00 00 00 00 00     . . . . . . . . 
+00 00 00 00 00 00 00 00     . . . . . . . . 
+00 00 00 00 68 63 64 00     . . . . h c d . 
+14 3e 68 1f a1 91 a2 50     . > h . . . . P 
+ea 9a ea 09 94 14 6a 30     . . . . . . j 0 
+3e 4b cc de 45 74 65 73     > K . . E t e s 
+74 00 6d 79 73 71 6c 5f     t . m y s q l _ 
+6e 61 74 69 76 65 5f 70     n a t i v e _ p 
+61 73 73 77 6f 72 64 00     a s s w o r d . 
+b3 10 5f 72 75 6e 74 69     . . _ r u n t i 
+6d 65 5f 76 65 72 73 69     m e _ v e r s i 
+6f 6e 09 31 2e 38 2e 30     o n . 1 . 8 . 0 
+5f 32 30 32 0f 5f 63 6c     _ 2 0 2 . _ c l 
+69 65 6e 74 5f 76 65 72     i e n t _ v e r 
+73 69 6f 6e 12 40 4d 59     s i o n . @ M Y 
+53 51 4c 5f 43 4a 5f 56     S Q L _ C J _ V 
+45 52 53 49 4f 4e 40 0c     E R S I O N @ . 
+5f 63 6c 69 65 6e 74 5f     _ c l i e n t _ 
+6e 61 6d 65 1c 40 4d 59     n a m e . @ M Y 
+53 51 4c 5f 43 4a 5f 44     S Q L _ C J _ D 
+49 53 50 4c 41 59 5f 50     I S P L A Y _ P 
+52 4f 44 5f 4e 41 4d 45     R O D _ N A M E 
+40 0f 5f 63 6c 69 65 6e     @ . _ c l i e n 
+74 5f 6c 69 63 65 6e 73     t _ l i c e n s 
+65 17 40 4d 59 53 51 4c     e . @ M Y S Q L 
+5f 43 4a 5f 4c 49 43 45     _ C J _ L I C E 
+4e 53 45 5f 54 59 50 45     N S E _ T Y P E 
+40 0f 5f 72 75 6e 74 69     @ . _ r u n t i 
+6d 65 5f 76 65 6e 64 6f     m e _ v e n d o 
+72 12 4f 72 61 63 6c 65     r . O r a c l e 
+20 43 6f 72 70 6f 72 61     . C o r p o r a 
+74 69 6f 6e 00 00 00 00     t i o n . . . . 
+00 00 00 00 00 00 00 00     . . . . . . . . 
+00 00 00 00 00 00 00 00     . . . . . . . . 
+00 00 00 00 00 00 00 00     . . . . . . . . 
+00 00 00 00 00 00 00 00     . . . . . . . . 
+00 00 00 00 00 00 00 00     . . . . . . . . 
+                            
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(4), buffer_size=16384, current_position=0, need to read 4 bytes to fill request, attempting to read 4 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 7
+Packet header:
+07 00 00 02                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,7) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(7), buffer_size=16384, current_position=0, need to read 7 bytes to fill request, underlying InputStream reports 7 total bytes available, attempting to read 7 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+00 00 00 02 00 00 00        . . . . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: send() packet payload:
+host: '172.24.133.95' threadId: '28381'
+69 03 00 00 03 2f 2a 20     i . . . . / * . 
+40 4d 59 53 51 4c 5f 43     @ M Y S Q L _ C 
+4a 5f 46 55 4c 4c 5f 50     J _ F U L L _ P 
+52 4f 44 5f 4e 41 4d 45     R O D _ N A M E 
+40 20 28 20 52 65 76 69     @ . ( . R e v i 
+73 69 6f 6e 3a 20 40 4d     s i o n : . @ M 
+59 53 51 4c 5f 43 4a 5f     Y S Q L _ C J _ 
+52 45 56 49 53 49 4f 4e     R E V I S I O N 
+40 20 29 20 2a 2f 53 48     @ . ) . * / S H 
+4f 57 20 56 41 52 49 41     O W . V A R I A 
+42 4c 45 53 20 57 48 45     B L E S . W H E 
+52 45 20 56 61 72 69 61     R E . V a r i a 
+62 6c 65 5f 6e 61 6d 65     b l e _ n a m e 
+20 3d 27 6c 61 6e 67 75     . = ' l a n g u 
+61 67 65 27 20 4f 52 20     a g e ' . O R . 
+56 61 72 69 61 62 6c 65     V a r i a b l e 
+5f 6e 61 6d 65 20 3d 20     _ n a m e . = . 
+27 6e 65 74 5f 77 72 69     ' n e t _ w r i 
+74 65 5f 74 69 6d 65 6f     t e _ t i m e o 
+75 74 27 20 4f 52 20 56     u t ' . O R . V 
+61 72 69 61 62 6c 65 5f     a r i a b l e _ 
+6e 61 6d 65 20 3d 20 27     n a m e . = . ' 
+69 6e 74 65 72 61 63 74     i n t e r a c t 
+69 76 65 5f 74 69 6d 65     i v e _ t i m e 
+6f 75 74 27 20 4f 52 20     o u t ' . O R . 
+56 61 72 69 61 62 6c 65     V a r i a b l e 
+5f 6e 61 6d 65 20 3d 20     _ n a m e . = . 
+27 77 61 69 74 5f 74 69     ' w a i t _ t i 
+6d 65 6f 75 74 27 20 4f     m e o u t ' . O 
+52 20 56 61 72 69 61 62     R . V a r i a b 
+6c 65 5f 6e 61 6d 65 20     l e _ n a m e . 
+3d 20 27 63 68 61 72 61     = . ' c h a r a 
+63 74 65 72 5f 73 65 74     c t e r _ s e t 
+5f 63 6c 69 65 6e 74 27     _ c l i e n t ' 
+20 4f 52 20 56 61 72 69     . O R . V a r i 
+61 62 6c 65 5f 6e 61 6d     a b l e _ n a m 
+65 20 3d 20 27 63 68 61     e . = . ' c h a 
+72 61 63 74 65 72 5f 73     r a c t e r _ s 
+65 74 5f 63 6f 6e 6e 65     e t _ c o n n e 
+63 74 69 6f 6e 27 20 4f     c t i o n ' . O 
+52 20 56 61 72 69 61 62     R . V a r i a b 
+6c 65 5f 6e 61 6d 65 20     l e _ n a m e . 
+3d 20 27 63 68 61 72 61     = . ' c h a r a 
+63 74 65 72 5f 73 65 74     c t e r _ s e t 
+27 20 4f 52 20 56 61 72     ' . O R . V a r 
+69 61 62 6c 65 5f 6e 61     i a b l e _ n a 
+6d 65 20 3d 20 27 63 68     m e . = . ' c h 
+61 72 61 63 74 65 72 5f     a r a c t e r _ 
+73 65 74 5f 73 65 72 76     s e t _ s e r v 
+65 72 27 20 4f 52 20 56     e r ' . O R . V 
+61 72 69 61 62 6c 65 5f     a r i a b l e _ 
+6e 61 6d 65 20 3d 20 27     n a m e . = . ' 
+74 78 5f 69 73 6f 6c 61     t x _ i s o l a 
+74 69 6f 6e 27 20 4f 52     t i o n ' . O R 
+20 56 61 72 69 61 62 6c     . V a r i a b l 
+65 5f 6e 61 6d 65 20 3d     e _ n a m e . = 
+20 27 74 72 61 6e 73 61     . ' t r a n s a 
+63 74 69 6f 6e 5f 69 73     c t i o n _ i s 
+6f 6c 61 74 69 6f 6e 27     o l a t i o n ' 
+20 4f 52 20 56 61 72 69     . O R . V a r i 
+61 62 6c 65 5f 6e 61 6d     a b l e _ n a m 
+65 20 3d 20 27 63 68 61     e . = . ' c h a 
+72 61 63 74 65 72 5f 73     r a c t e r _ s 
+65 74 5f 72 65 73 75 6c     e t _ r e s u l 
+74 73 27 20 4f 52 20 56     t s ' . O R . V 
+61 72 69 61 62 6c 65 5f     a r i a b l e _ 
+6e 61 6d 65 20 3d 20 27     n a m e . = . ' 
+74 69 6d 65 7a 6f 6e 65     t i m e z o n e 
+27 20 4f 52 20 56 61 72     ' . O R . V a r 
+69 61 62 6c 65 5f 6e 61     i a b l e _ n a 
+6d 65 20 3d 20 27 74 69     m e . = . ' t i 
+6d 65 5f 7a 6f 6e 65 27     m e _ z o n e ' 
+20 4f 52 20 56 61 72 69     . O R . V a r i 
+61 62 6c 65 5f 6e 61 6d     a b l e _ n a m 
+65 20 3d 20 27 73 79 73     e . = . ' s y s 
+74 65 6d 5f 74 69 6d 65     t e m _ t i m e 
+5f 7a 6f 6e 65 27 20 4f     _ z o n e ' . O 
+52 20 56 61 72 69 61 62     R . V a r i a b 
+6c 65 5f 6e 61 6d 65 20     l e _ n a m e . 
+3d 20 27 6c 6f 77 65 72     = . ' l o w e r 
+5f 63 61 73 65 5f 74 61     _ c a s e _ t a 
+62 6c 65 5f 6e 61 6d 65     b l e _ n a m e 
+73 27 20 4f 52 20 56 61     s ' . O R . V a 
+72 69 61 62 6c 65 5f 6e     r i a b l e _ n 
+61 6d 65 20 3d 20 27 6d     a m e . = . ' m 
+61 78 5f 61 6c 6c 6f 77     a x _ a l l o w 
+65 64 5f 70 61 63 6b 65     e d _ p a c k e 
+74 27 20 4f 52 20 56 61     t ' . O R . V a 
+72 69 61 62 6c 65 5f 6e     r i a b l e _ n 
+61 6d 65 20 3d 20 27 6e     a m e . = . ' n 
+65 74 5f 62 75 66 66 65     e t _ b u f f e 
+72 5f 6c 65 6e 67 74 68     r _ l e n g t h 
+27 20 4f 52 20 56 61 72     ' . O R . V a r 
+69 61 62 6c 65 5f 6e 61     i a b l e _ n a 
+6d 65 20 3d 20 27 73 71     m e . = . ' s q 
+6c 5f 6d 6f 64 65 27 20     l _ m o d e ' . 
+4f 52 20 56 61 72 69 61     O R . V a r i a 
+62 6c 65 5f 6e 61 6d 65     b l e _ n a m e 
+20 3d 20 27 71 75 65 72     . = . ' q u e r 
+79 5f 63 61 63 68 65 5f     y _ c a c h e _ 
+74 79 70 65 27 20 4f 52     t y p e ' . O R 
+20 56 61 72 69 61 62 6c     . V a r i a b l 
+65 5f 6e 61 6d 65 20 3d     e _ n a m e . = 
+20 27 71 75 65 72 79 5f     . ' q u e r y _ 
+63 61 63 68 65 5f 73 69     c a c h e _ s i 
+7a 65 27 20 4f 52 20 56     z e ' . O R . V 
+61 72 69 61 62 6c 65 5f     a r i a b l e _ 
+6e 61 6d 65 20 3d 20 27     n a m e . = . ' 
+69 6e 69 74 5f 63 6f 6e     i n i t _ c o n 
+6e 65 63 74 27              n e c t ' 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(4), buffer_size=16384, current_position=0, need to read 4 bytes to fill request, attempting to read 4 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 1
+Packet header:
+01 00 00 01                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,1) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(1), buffer_size=16384, current_position=0, need to read 1 bytes to fill request, underlying InputStream reports 689 total bytes available, attempting to read 689 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+02                          . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading packet of length 82
+Packet header:
+52 00 00 02                 R . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@49476842,0,82)
+Thu Jul 07 10:44:39 CST 2022 TRACE: readPacket() payload:
+03 64 65 66 00 11 73 65     . d e f . . s e 
+73 73 69 6f 6e 5f 76 61     s s i o n _ v a 
+72 69 61 62 6c 65 73 11     r i a b l e s . 
+73 65 73 73 69 6f 6e 5f     s e s s i o n _ 
+76 61 72 69 61 62 6c 65     v a r i a b l e 
+73 0d 56 61 72 69 61 62     s . V a r i a b 
+6c 65 5f 6e 61 6d 65 0d     l e _ n a m e . 
+56 61 72 69 61 62 6c 65     V a r i a b l e 
+5f 6e 61 6d 65 0c 21 00     _ n a m e . ! . 
+c0 00 00 00 fd 01 10 00     . . . . . . . . 
+00 00                       . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading packet of length 66
+Packet header:
+42 00 00 03                 B . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@27c170f0,0,66)
+Thu Jul 07 10:44:39 CST 2022 TRACE: readPacket() payload:
+03 64 65 66 00 11 73 65     . d e f . . s e 
+73 73 69 6f 6e 5f 76 61     s s i o n _ v a 
+72 69 61 62 6c 65 73 11     r i a b l e s . 
+73 65 73 73 69 6f 6e 5f     s e s s i o n _ 
+76 61 72 69 61 62 6c 65     v a r i a b l e 
+73 05 56 61 6c 75 65 05     s . V a l u e . 
+56 61 6c 75 65 0c 21 00     V a l u e . ! . 
+00 0c 00 00 fd 00 00 00     . . . . . . . . 
+00 00                       . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 5
+Packet header:
+05 00 00 04                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,5)
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+fe 00 00 22 00              . . . " . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@2626b418,0,20)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@5a07e868,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@76ed5528,0,24)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@2c7b84de,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@3fee733d,0,21)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@5acf9800,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4617c264,0,20)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@36baf30c,0,7)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@7a81197d,0,12)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@5ca881b5,0,19)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@24d46ca6,0,3)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4517d9a3,0,22)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@372f7a8d,0,1)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@2f92e0f4,0,18)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@28a418fc,0,8)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@5305068a,0,17)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@1f32e575,0,5)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@279f2327,0,17)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@2ff4acd0,0,2)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@54bedef2,0,16)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@5caf905d,0,1)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@27716f4,0,16)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@8efb846,0,3)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@2a84aee7,0,8)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@a09ee92,0,22)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@30f39991,0,16)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@452b3a41,0,3)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4a574795,0,9)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@f6f4d33,0,6)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@23fc625e,0,21)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@3f99bd52,0,15)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4f023edb,0,12)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@3a71f4dd,0,15)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@7adf9f5f,0,12)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@85ede7b,0,3)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: send() packet payload:
+host: '172.24.133.95' threadId: '28381'
+6b 00 00 00 03 2f 2a 20     k . . . . / * . 
+40 4d 59 53 51 4c 5f 43     @ M Y S Q L _ C 
+4a 5f 46 55 4c 4c 5f 50     J _ F U L L _ P 
+52 4f 44 5f 4e 41 4d 45     R O D _ N A M E 
+40 20 28 20 52 65 76 69     @ . ( . R e v i 
+73 69 6f 6e 3a 20 40 4d     s i o n : . @ M 
+59 53 51 4c 5f 43 4a 5f     Y S Q L _ C J _ 
+52 45 56 49 53 49 4f 4e     R E V I S I O N 
+40 20 29 20 2a 2f 53 45     @ . ) . * / S E 
+4c 45 43 54 20 40 40 73     L E C T . @ @ s 
+65 73 73 69 6f 6e 2e 61     e s s i o n . a 
+75 74 6f 5f 69 6e 63 72     u t o _ i n c r 
+65 6d 65 6e 74 5f 69 6e     e m e n t _ i n 
+63 72 65 6d 65 6e 74        c r e m e n t 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(4), buffer_size=16384, current_position=0, need to read 4 bytes to fill request, attempting to read 4 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 1
+Packet header:
+01 00 00 01                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,1) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(1), buffer_size=16384, current_position=0, need to read 1 bytes to fill request, underlying InputStream reports 85 total bytes available, attempting to read 85 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+01                          . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading packet of length 56
+Packet header:
+38 00 00 02                 8 . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@63961c42,0,56)
+Thu Jul 07 10:44:39 CST 2022 TRACE: readPacket() payload:
+03 64 65 66 00 00 00 22     . d e f . . . " 
+40 40 73 65 73 73 69 6f     @ @ s e s s i o 
+6e 2e 61 75 74 6f 5f 69     n . a u t o _ i 
+6e 63 72 65 6d 65 6e 74     n c r e m e n t 
+5f 69 6e 63 72 65 6d 65     _ i n c r e m e 
+6e 74 00 0c 3f 00 15 00     n t . . ? . . . 
+00 00 08 a0 00 00 00 00     . . . . . . . . 
+                            
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 5
+Packet header:
+05 00 00 03                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,5)
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+fe 00 00 02 00              . . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@1be6f5c3,0,1)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: send() packet payload:
+host: '172.24.133.95' threadId: '28381'
+12 00 00 00 03 53 45 54     . . . . . S E T 
+20 4e 41 4d 45 53 20 75     . N A M E S . u 
+74 66 38 6d 62 34           t f 8 m b 4 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(4), buffer_size=16384, current_position=0, need to read 4 bytes to fill request, attempting to read 4 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 7
+Packet header:
+07 00 00 01                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,7) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(7), buffer_size=16384, current_position=0, need to read 7 bytes to fill request, underlying InputStream reports 7 total bytes available, attempting to read 7 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+00 00 00 02 00 00 00        . . . . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: send() packet payload:
+host: '172.24.133.95' threadId: '28381'
+21 00 00 00 03 53 45 54     ! . . . . S E T 
+20 63 68 61 72 61 63 74     . c h a r a c t 
+65 72 5f 73 65 74 5f 72     e r _ s e t _ r 
+65 73 75 6c 74 73 20 3d     e s u l t s . = 
+20 4e 55 4c 4c              . N U L L 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(4), buffer_size=16384, current_position=0, need to read 4 bytes to fill request, attempting to read 4 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 7
+Packet header:
+07 00 00 01                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,7) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(7), buffer_size=16384, current_position=0, need to read 7 bytes to fill request, underlying InputStream reports 7 total bytes available, attempting to read 7 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+00 00 00 02 00 00 00        . . . . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: send() packet payload:
+host: '172.24.133.95' threadId: '28381'
+11 00 00 00 03 53 45 54     . . . . . S E T 
+20 61 75 74 6f 63 6f 6d     . a u t o c o m 
+6d 69 74 3d 31              m i t = 1 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(4), buffer_size=16384, current_position=0, need to read 4 bytes to fill request, attempting to read 4 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 7
+Packet header:
+07 00 00 01                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,7) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(7), buffer_size=16384, current_position=0, need to read 7 bytes to fill request, underlying InputStream reports 7 total bytes available, attempting to read 7 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+00 00 00 02 00 00 00        . . . . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: send() packet payload:
+host: '172.24.133.95' threadId: '28381'
+3a 00 00 00 03 53 45 54     : . . . . S E T 
+20 73 71 6c 5f 6d 6f 64     . s q l _ m o d 
+65 3d 27 4e 4f 5f 45 4e     e = ' N O _ E N 
+47 49 4e 45 5f 53 55 42     G I N E _ S U B 
+53 54 49 54 55 54 49 4f     S T I T U T I O 
+4e 2c 53 54 52 49 43 54     N , S T R I C T 
+5f 54 52 41 4e 53 5f 54     _ T R A N S _ T 
+41 42 4c 45 53 27           A B L E S ' 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(4), buffer_size=16384, current_position=0, need to read 4 bytes to fill request, attempting to read 4 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 7
+Packet header:
+07 00 00 01                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,7) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(7), buffer_size=16384, current_position=0, need to read 7 bytes to fill request, underlying InputStream reports 7 total bytes available, attempting to read 7 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+00 00 00 02 00 01 00        . . . . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: send() packet payload:
+host: '172.24.133.95' threadId: '28381'
+0e 00 00 00 03 53 48 4f     . . . . . S H O 
+57 20 57 41 52 4e 49 4e     W . W A R N I N 
+47 53                       G S 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(4), buffer_size=16384, current_position=0, need to read 4 bytes to fill request, attempting to read 4 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 1
+Packet header:
+01 00 00 01                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,1) not all data available in buffer, must read from stream
+Thu Jul 07 10:44:39 CST 2022 TRACE:   ReadAheadInputStream.fill(1), buffer_size=16384, current_position=0, need to read 1 bytes to fill request, underlying InputStream reports 131 total bytes available, attempting to read 131 bytes.
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+03                          . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading packet of length 27
+Packet header:
+1b 00 00 02                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@72ea2f77,0,27)
+Thu Jul 07 10:44:39 CST 2022 TRACE: readPacket() payload:
+03 64 65 66 00 00 00 05     . d e f . . . . 
+4c 65 76 65 6c 00 0c 21     L e v e l . . ! 
+00 15 00 00 00 fd 01 00     . . . . . . . . 
+1f 00 00                    . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading packet of length 26
+Packet header:
+1a 00 00 03                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@681a9515,0,26)
+Thu Jul 07 10:44:39 CST 2022 TRACE: readPacket() payload:
+03 64 65 66 00 00 00 04     . d e f . . . . 
+43 6f 64 65 00 0c 3f 00     C o d e . . ? . 
+04 00 00 00 03 a1 00 00     . . . . . . . . 
+00 00                       . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading packet of length 29
+Packet header:
+1d 00 00 04                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@19469ea2,0,29)
+Thu Jul 07 10:44:39 CST 2022 TRACE: readPacket() payload:
+03 64 65 66 00 00 00 07     . d e f . . . . 
+4d 65 73 73 61 67 65 00     M e s s a g e . 
+0c 21 00 00 06 00 00 fd     . ! . . . . . . 
+01 00 1f 00 00              . . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: Reading reusable packet of length 5
+Packet header:
+05 00 00 05                 . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@4d7e1886,0,5)
+Thu Jul 07 10:44:39 CST 2022 TRACE: reuseAndReadPacket() payload:
+fe 00 00 02 00              . . . . . 
+
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@2f2c9b19,0,7)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@31befd9f,0,4)
+Thu Jul 07 10:44:39 CST 2022 TRACE: ReadAheadInputStream.readIfNecessary([B@6ff3c5b5,0,4)
+getConnection returning com.mysql.jdbc.Driver
+Thu Jul 07 10:44:39 CST 2022 TRACE: send() packet payload:
+host: 'mysql.server.host' threadId: '28381'
+01 00 00 00 01              . . . . . 
+
+
+Process finished with exit code 0
